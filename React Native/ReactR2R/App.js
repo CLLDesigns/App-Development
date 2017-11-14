@@ -1,57 +1,67 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
 import React, { Component } from 'react';
 import {
-  Platform,
   StyleSheet,
-  Text,
-  View
+  View,
+  Image,
 } from 'react-native';
+import ModalSliderBox from './components/ModalSliderBox.js'
 
-const instructions = Platform.select({
+
+/*const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' +
     'Cmd+D or shake for dev menu',
   android: 'Double tap R on your keyboard to reload,\n' +
     'Shake or press menu button for dev menu',
-});
+});*/
 
 export default class App extends Component<{}> {
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit App.js
-        </Text>
-        <Text style={styles.instructions}>
-          {instructions}
-        </Text>
+      <View style={styles.test}>
+        <ModalSliderBox type="location"></ModalSliderBox>
       </View>
+        // <View style={styles.viewer}>
+        //   <Image source={require('./Design/Resources/BG2x.png')} style={styles.container}></Image>
+        //
+        //   <View style={[styles.container, {position: 'absolute', top: 0, left: 0}]}>
+        //     <Image source={require('./Design/Resources/HEADER.png')} style={styles.logo}></Image>
+        //     <Image responsive source={require('./Design/Resources/TAGLINE.png')} style={styles.tag}></Image>
+        //   </View>
+        // </View>
     );
   }
 }
 
+
 const styles = StyleSheet.create({
-  container: {
+  test: {
+    marginTop: 63,
+    flexDirection: 'row',
+    alignItems: 'center'
+  },
+  viewer: {
     flex: 1,
-    justifyContent: 'center',
+    width: null,
+    height: null
+  },
+  container: {
+    flexDirection: 'column',
+    justifyContent: 'space-around',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    flex: 1,
+    width: null,
+    height: null,
+    backgroundColor: 'transparent'
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
+  logo: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    backgroundColor: 'transparent',
+    top: 0,
+    left: 0
   },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
+  tag: {
+    backgroundColor: 'transparent'
   },
 });
