@@ -40,18 +40,18 @@ const findClosestOffset = (intervals, current) => {
     var min = intervals[i];
     var max = intervals[i+1];
     if (current < min) {
-      return min;
+      return [i, min];
     } else if (current > max) {
       if (i == intervals.length-2) {
-        return max;
+        return [i+1, max];
       }
     } else {
       var minDiff = Math.abs(current - min);
       var maxDiff = Math.abs(current - max);
       if (minDiff < maxDiff) {
-        return min;
+        return [i, min];
       } else {
-        return max;
+        return [i+1, max];
       }
     }
   }
@@ -59,6 +59,7 @@ const findClosestOffset = (intervals, current) => {
 
 class ModalSlider extends React.Component {
   intervals = [0];
+  index = 0;
 
   constructor(props) {
     super(props)
@@ -86,9 +87,14 @@ class ModalSlider extends React.Component {
     this.onScrollEnd = this.onScrollEnd.bind(this);
   }
 
+  // After swipe:
+  // Notify the parent to swap itinerary content slide.
+  // Snap to correct modal.
   onScrollEnd(e) {
     const currentOffset = e.nativeEvent.contentOffset.x;
-    this.refs.flatlist.scrollToOffset({offset: findClosestOffset(this.intervals, currentOffset), animated: true});
+    var indexAndOffset = findClosestOffset(this.intervals, currentOffset);
+    this.props.handleSwipe(indexAndOffset[0]);
+    this.refs.flatlist.scrollToOffset({offset: indexAndOffset[1], animated: true});
   }
 
   onPress() {

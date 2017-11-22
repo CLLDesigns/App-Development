@@ -4,6 +4,8 @@ import {
   StyleSheet,
   View,
   Image,
+  TouchableOpacity,
+  Text
 } from 'react-native';
 import ModalSlider from './components/ModalSlider.js'
 import ItineraryContent from './components/ItineraryContent.js'
@@ -17,20 +19,26 @@ import ItineraryContent from './components/ItineraryContent.js'
 });*/
 
 export default class App extends Component<{}> {
+  constructor(props) {
+    super(props)
+
+    this.handleSwipe = this.handleSwipe.bind(this)
+  }
+
+  handleSwipe(passedIndex) {
+    this.ic.setState({
+      index: passedIndex
+    })
+  }
+
   render() {
     return (
       <View style={styles.test}>
-        <ModalSlider contentWidth='280'></ModalSlider>
-        <ItineraryContent></ItineraryContent>
+        <ModalSlider contentWidth='280' handleSwipe={this.handleSwipe}></ModalSlider>
+        <ItineraryContent
+          ref={component => this.ic = component}
+        ></ItineraryContent>
       </View>
-        // <View style={styles.viewer}>
-        //   <Image source={require('./Design/Resources/BG2x.png')} style={styles.container}></Image>
-        //
-        //   <View style={[styles.container, {position: 'absolute', top: 0, left: 0}]}>
-        //     <Image source={require('./Design/Resources/HEADER.png')} style={styles.logo}></Image>
-        //     <Image responsive source={require('./Design/Resources/TAGLINE.png')} style={styles.tag}></Image>
-        //   </View>
-        // </View>
     );
   }
 }
@@ -39,32 +47,6 @@ export default class App extends Component<{}> {
 const styles = StyleSheet.create({
   test: {
     marginTop: 63,
-    flexDirection: 'row',
-    alignItems: 'center'
-  },
-  viewer: {
-    flex: 1,
-    width: null,
-    height: null
-  },
-  container: {
     flexDirection: 'column',
-    justifyContent: 'space-around',
-    alignItems: 'center',
-    flex: 1,
-    width: null,
-    height: null,
-    backgroundColor: 'transparent'
-  },
-  logo: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    alignItems: 'center',
-    backgroundColor: 'transparent',
-    top: 0,
-    left: 0
-  },
-  tag: {
-    backgroundColor: 'transparent'
   },
 });
