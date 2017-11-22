@@ -5,7 +5,8 @@ import {
   View,
   Image,
 } from 'react-native';
-import ModalSliderBox from './components/ModalSliderBox.js'
+import ModalSlider from './components/ModalSlider.js'
+import ItineraryContent from './components/ItineraryContent.js'
 
 
 /*const instructions = Platform.select({
@@ -19,7 +20,8 @@ export default class App extends Component<{}> {
   render() {
     return (
       <View style={styles.test}>
-        <ModalSliderBox type="location"></ModalSliderBox>
+        <ModalSlider contentWidth='280'></ModalSlider>
+        <ItineraryContent></ItineraryContent>
       </View>
         // <View style={styles.viewer}>
         //   <Image source={require('./Design/Resources/BG2x.png')} style={styles.container}></Image>

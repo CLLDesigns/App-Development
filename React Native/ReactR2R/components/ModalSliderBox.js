@@ -8,26 +8,6 @@ import {
   TouchableWithoutFeedback
 } from 'react-native';
 
-const getDirection = ({ moveX, moveY, dx, dy}) => {
-  const draggedDown = dy > 30;
-  const draggedUp = dy < -30;
-  const draggedLeft = dx < -30;
-  const draggedRight = dx > 30;
-  let dragDirection = '';
-
-  if (draggedDown || draggedUp) {
-    if (draggedDown) dragDirection += 'dragged down '
-    if (draggedUp) dragDirection +=  'dragged up ';
-  }
-
-  if (draggedLeft || draggedRight) {
-    if (draggedLeft) dragDirection += 'dragged left '
-    if (draggedRight) dragDirection +=  'dragged right ';
-  }
-
-  if (dragDirection) return dragDirection;
-}
-
 class ModalSliderBox extends React.Component {
   constructor(props) {
     super(props)
@@ -50,51 +30,29 @@ class ModalSliderBox extends React.Component {
     if (this.state.transit == 'location') {
 
     }
-
-    this.onPress = this.onPress.bind(this);
   }
 
-  onPress() {
-    this.setState({
-      feedback: "Tap"
-    })
-  }
-
-  componentWillMount() {
-    this._panResponder = PanResponder.create({
-      onMoveShouldSetPanResponder:(evt, gestureState) => !!getDirection(gestureState),
-      onPanResponderMove: (evt, gestureState) => {
-        const drag = getDirection(gestureState);
-        this.setState({
-          feedback: drag,
-        })
-      },
-      onPanResponderTerminationRequest: (evt, gestureState) => true,
-    });
-  }
 
   render() {
     return (
-      <View {...this._panResponder.panHandlers}> 
-        <TouchableWithoutFeedback onPress={this.onPress}>
-          <View style={styles.container}>
-            <Image source={require('../Design/Users/Resources/Rectangle.png')} style={styles.bg}></Image>
-            <Text style={styles.nobg}>{this.state.feedback}</Text>
-          </View>
-        </TouchableWithoutFeedback>
-      </View>
+      <TouchableWithoutFeedback onPress={this.onPress}>
+        <View style={styles.container}>
+          <Image source={require('../Design/Users/Resources/Rectangle.png')} style={styles.bg}></Image>
+          <Text style={styles.nobg}>{this.state.feedback}</Text>
+        </View>
+      </TouchableWithoutFeedback>
     );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-    height: 238,
-    width: 282,
+    height: 235,
+    width: 280,
     shadowColor: 'rgba(0,0,0,0.5)',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.4,
-    shadowRadius: 20,
+    shadowRadius: 5,
     borderRadius: 20,
     flexDirection: 'column',
     justifyContent: 'center',
