@@ -16,6 +16,7 @@ class ModalSliderBox extends React.Component {
       type: props.type,
       weather: props.weather,
       transit: props.transit,
+      transitTime: props.transitTime,
       feedback: 'start'
     };
 

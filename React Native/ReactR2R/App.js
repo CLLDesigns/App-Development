@@ -8,7 +8,7 @@ import {
   Text
 } from 'react-native';
 import ModalSlider from './components/ModalSlider.js'
-import ItineraryContent from './components/ItineraryContent.js'
+import ItineraryContentSlider from './components/ItineraryContentSlider.js'
 
 
 /*const instructions = Platform.select({
@@ -35,9 +35,9 @@ export default class App extends Component<{}> {
     return (
       <View style={styles.test}>
         <ModalSlider contentWidth='280' handleSwipe={this.handleSwipe}></ModalSlider>
-        <ItineraryContent
+        <ItineraryContentSlider
           ref={component => this.ic = component}
-        ></ItineraryContent>
+        ></ItineraryContentSlider>
       </View>
     );
   }
